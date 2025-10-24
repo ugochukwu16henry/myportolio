@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industries We Serve | AMS Solutions</title>
+    <style>
+        /* CSS Variables for Color Scheme */
+        :root {
+            --primary-blue: #2563eb;
+            --secondary-red: #dc2626;
+            --black: #000000;
+            --white: #ffffff;
+            --light-gray: #f8fafc;
+            --dark-gray: #334155;
+            --transition: all 0.3s ease;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-blue);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-link.active {
+            color: var(--primary-blue);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%);
+            color: var(--white);
+            padding: 150px 0 80px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Industries Grid */
+        .industries-grid {
+            background-color: var(--light-gray);
+            padding: 80px 0;
+        }
+
+        .industries-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .industry-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .industry-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .industry-header {
+            padding: 30px;
+            text-align: center;
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .industry-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .industry-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        .industry-body {
+            padding: 30px;
+        }
+
+        .industry-features {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .industry-features li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .industry-features li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        /* Industry Solutions */
+        .industry-solutions {
+            background-color: var(--white);
+            padding: 80px 0;
+        }
+
+        .solution-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .solution-tab {
+            padding: 12px 25px;
+            background-color: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .solution-tab.active,
+        .solution-tab:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .solution-content {
+            display: none;
+        }
+
+        .solution-content.active {
+            display: block;
+        }
+
+        .solution-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .solution-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .solution-stat {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--light-gray);
+            border-radius: 10px;
+        }
+
+        .solution-stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+
+        .solution-stat-text {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+
+        /* Case Studies */
+        .case-studies {
+            background-color: var(--light-gray);
+            padding: 80px 0;
+        }
+
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .case-study {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .case-study-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .case-study-content {
+            padding: 30px;
+        }
+
+        .case-study-industry {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .case-study-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--black);
+        }
+
+        .case-study-results {
+            background-color: var(--light-gray);
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .case-study-results h4 {
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .cta h2 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .cta h2::after {
+            background-color: var(--white);
+        }
+
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-links h3,
+        .footer-contact h3,
+        .footer-social h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            margin-right: 10px;
+            color: var(--primary-blue);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #334155;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary-blue);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            h2 {
+                font-size: 2.2rem;
+            }
+
+            .solution-detail {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 0;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 20px 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 15px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .bar {
+                display: block;
+                width: 25px;
+                height: 3px;
+                margin: 5px auto;
+                transition: all 0.3s ease-in-out;
+                background-color: var(--black);
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .solution-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .page-header {
+                padding: 120px 0 60px;
+            }
+
+            .industries-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">AMS Solutions</a>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="industries.html" class="nav-link active">Industries</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Industries We Serve</h1>
+            <p>With expertise across multiple sectors, we deliver customized BPO solutions that address
+                industry-specific challenges and opportunities.</p>
+        </div>
+    </section>
+
+    <!-- Industries Grid -->
+    <section class="industries-grid">
+        <div class="container">
+            <h2>Our Industry Expertise</h2>
+            <div class="industries-container">
+                <!-- Healthcare -->
+                <div class="industry-card">
+                    <div class="industry-header">
+                        <div class="industry-icon">🏥</div>
+                        <h3>Healthcare</h3>
+                    </div>
+                    <div class="industry-body">
+                        <p>Comprehensive BPO solutions for healthcare providers, insurers, and medical facilities.</p>
+                        <ul class="industry-features">
+                            <li>Medical billing and coding</li>
+                            <li>Patient support services</li>
+                            <li>Claims processing</li>
+                            <li>Medical records management</li>
+                            <li>HIPAA compliant solutions</li>
+                        </ul>
+                        <a href="#healthcare" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Financial Services -->
+                <div class="industry-card">
+                    <div class="industry-header">
+                        <div class="industry-icon">🏦</div>
+                        <h3>Financial Services</h3>
+                    </div>
+                    <div class="industry-body">
+                        <p>Specialized solutions for banking, insurance, and financial institutions.</p>
+                        <ul class="industry-features">
+                            <li>Loan processing and underwriting</li>
+                            <li>Claims management</li>
+                            <li>Customer service and support</li>
+                            <li>Fraud detection and prevention</li>
+                            <li>Compliance and regulatory support</li>
+                        </ul>
+                        <a href="#financial" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Retail & E-commerce -->
+                <div class="industry-card">
+                    <div class="industry-header">
+                        <div class="industry-icon">🛒</div>
+                        <h3>Retail & E-commerce</h3>
+                    </div>
+                    <div class="industry-body">
+                        <p>End-to-end solutions for retailers and e-commerce businesses.</p>
+                        <ul class="industry-features">
+                            <li>Customer service and support</li>
+                            <li>Order processing and fulfillment</li>
+                            <li>Inventory management</li>
+                            <li>Returns and exchanges processing</li>
+                            <li>Multichannel customer engagement</li>
+                        </ul>
+                        <a href="#retail" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="industry-card">
+                    <div class="industry-header">
+                        <div class="industry-icon">🎓</div>
+                        <h3>Education</h3>
+                    </div>
+                    <div class="industry-body">
+                        <p>BPO services for educational institutions and ed-tech companies.</p>
+                        <ul class="industry-features">
+                            <li>Student enrollment and support</li>
+                            <li>Administrative services</li>
+                            <li>Learning management support</li>
+                            <li>Educational content development</li>
+                            <li>Research and data analysis</li>
+                        </ul>
+                        <a href="#education" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Logistics -->
+                <div class="industry-card">
+                    <div class="industry-header">
+                        <div class="industry-icon">🚚</div>
+                        <h3>Logistics</h3>
+                    </div>
+                    <div class="industry-body">
+                        <p>Optimized solutions for supply chain and logistics companies.</p>
+                        <ul class="industry-features">
+                            <li>Supply chain management</li>
+                            <li>Order tracking and customer support</li>
+                            <li>Inventory optimization</li>
+                            <li>Route planning and optimization</li>
+                            <li>Vendor management</li>
+                        </ul>
+                        <a href="#logistics" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Technology -->
+                <div class="industry-card">
+                    <div class="industry-header">
+                        <div class="industry-icon">💻</div>
+                        <h3>Technology</h3>
+                    </div>
+                    <div class="industry-body">
+                        <p>Specialized BPO services for tech companies and startups.</p>
+                        <ul class="industry-features">
+                            <li>Technical support services</li>
+                            <li>Software development support</li>
+                            <li>IT infrastructure management</li>
+                            <li>Cybersecurity monitoring</li>
+                            <li>Data analytics and insights</li>
+                        </ul>
+                        <a href="#technology" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Solutions -->
+    <section class="industry-solutions">
+        <div class="container">
+            <h2>Industry-Specific Solutions</h2>
+            <div class="solution-tabs">
+                <button class="solution-tab active" data-solution="healthcare">Healthcare</button>
+                <button class="solution-tab" data-solution="financial">Financial Services</button>
+                <button class="solution-tab" data-solution="retail">Retail & E-commerce</button>
+                <button class="solution-tab" data-solution="education">Education</button>
+            </div>
+
+            <!-- Healthcare Solutions -->
+            <div class="solution-content active" id="healthcare">
+                <div class="solution-detail">
+                    <div class="solution-text">
+                        <h3>Healthcare BPO Solutions</h3>
+                        <p>Our healthcare BPO services are designed to help medical providers, insurers, and healthcare
+                            organizations streamline operations, reduce costs, and improve patient care.</p>
+                        <div class="solution-stats">
+                            <div class="solution-stat">
+                                <div class="solution-stat-number">40%</div>
+                                <div class="solution-stat-text">Cost Reduction</div>
+                            </div>
+                            <div class="solution-stat">
+                                <div class="solution-stat-number">99%</div>
+                                <div class="solution-stat-text">Accuracy Rate</div>
+                            </div>
+                            <div class="solution-stat">
+                                <div class="solution-stat-number">24/7</div>
+                                <div class="solution-stat-text">Support Available</div>
+                            </div>
+                            <div class="solution-stat">
+                                <div class="solution-stat-number">HIPAA</div>
+                                <div class="solution-stat-text">Compliant</div>
+                            </div>
+                        </div>
+                        <ul class="industry-features">
+                            <li>Medical billing and coding with 99.5% accuracy</li>
+                            <li>Patient scheduling and appointment management</li>
+                            <li>Medical records digitization and management</li>
+                            <li>Insurance claims processing and follow-up</li>
+                            <li>Telehealth support services</li>
+                        </ul>
+                        <a href="contact.html" class="btn">Get Healthcare Solutions</a>
+                    </div>
+                    <div class="solution-image">
+                        <img src="https://via.placeholder.com/500" alt="Healthcare Solutions"
+                            style="width: 100%; border-radius: 10px;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Services Solutions -->
+            <div class="solution-content" id="financial">
+                <div class="solution-detail">
+                    <div class="solution-text">
+                        <h3>Financial Services BPO Solutions</h3>
+                        <p>We provide comprehensive BPO solutions for financial institutions, helping them navigate
+                            regulatory requirements while improving operational efficiency and customer service.</p>
+                        <div class="solution-stats">
+                            <div class="solution-stat">
+                                <div class="solution-stat-number">35%</div>
+                                <div class="solution-stat-text">Faster Processing</div>
+                            </div>
+                            <div class="solution-stat">
+                                <div class="solution-stat-number">99.9%</div>
+                                <div class="solution-stat-text">Security Compliance</div>
+                            </div>
+                            <div class="solution-stat">
+                                <div class="solution-stat-number">50+</div>
+                                <div class="solution-stat-text">Financial Clients</div>
+                            </div>
+                            <div class="solution-stat">
+                                <div class="solution-stat-number">SOX</div>
+                                <div class="solution-stat-text">Compliant</div>
+                            </div>
+                        </div>
+                        <ul class="industry-features">
+                            <li>Loan application processing and underwriting</li>
+                            <li>Insurance claims management and processing</li>
+                            <li>Customer onboarding and KYC verification</li>
+                            <li>Fraud detection and prevention systems</li>
+                            <li>Regulatory compliance monitoring</li>
+                        </ul>
+                        <a href="contact.html" class="btn">Get Financial Solutions</a>
+                    </div>
+                    <div class="solution-image">
+                        <img src="https://via.placeholder.com/500" alt="Financial Services Solutions"
+                            style="width: 100%; border-radius: 10px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="case-studies">
+        <div class="container">
+            <h2>Success Stories</h2>
+            <div class="case-studies-grid">
+                <div class="case-study">
+                    <img src="https://via.placeholder.com/400x200" alt="Healthcare Case Study" class="case-study-image">
+                    <div class="case-study-content">
+                        <span class="case-study-industry">Healthcare</span>
+                        <h3>Regional Hospital System</h3>
+                        <p>Implemented our medical billing and patient support services, resulting in 40% reduction in
+                            administrative costs and 25% improvement in patient satisfaction scores.</p>
+                        <div class="case-study-results">
+                            <h4>Key Results:</h4>
+                            <p>• 40% reduction in administrative costs<br>• 25% improvement in patient satisfaction<br>•
+                                99.2% billing accuracy rate</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-study">
+                    <img src="https://via.placeholder.com/400x200" alt="Financial Case Study" class="case-study-image">
+                    <div class="case-study-content">
+                        <span class="case-study-industry">Financial Services</span>
+                        <h3>National Bank</h3>
+                        <p>Deployed our loan processing and customer service solutions, achieving 35% faster loan
+                            approvals and 50% reduction in customer complaint resolution time.</p>
+                        <div class="case-study-results">
+                            <h4>Key Results:</h4>
+                            <p>• 35% faster loan approvals<br>• 50% faster complaint resolution<br>• 45% cost savings in
+                                operations</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-study">
+                    <img src="https://via.placeholder.com/400x200" alt="Retail Case Study" class="case-study-image">
+                    <div class="case-study-content">
+                        <span class="case-study-industry">Retail</span>
+                        <h3>E-commerce Platform</h3>
+                        <p>Integrated our omnichannel customer support and order management system, leading to 60%
+                            increase in customer retention and 30% growth in sales.</p>
+                        <div class="case-study-results">
+                            <h4>Key Results:</h4>
+                            <p>• 60% increase in customer retention<br>• 30% growth in sales<br>• 45% reduction in
+                                support costs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Industry-Specific Solutions</h2>
+            <p>No matter your industry, we have the expertise to deliver customized BPO solutions that address your
+                unique challenges and opportunities.</p>
+            <a href="contact.html" class="btn" style="background-color: var(--white); color: var(--primary-blue);">Get
+                Industry Solutions</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">AMS Solutions</div>
+                    <p>Providing comprehensive Business Process Outsourcing services to help companies optimize
+                        efficiency, reduce costs, and drive growth.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="industries.html">Industries</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <span class="contact-icon">📍</span>
+                            <span>123 Business Avenue, Suite 500<br>New York, NY 10001</span>
+                        </li>
+                        <li>
+                            <span class="contact-icon">📞</span>
+                            <span>+1 (555) 123-4567</span>
+                        </li>
+                        <li>
+                            <span class="contact-icon">📧</span>
+                            <span>info@amssolutions.com</span>
+                        </li>
+                        <li>
+                            <span class="contact-icon">🕒</span>
+                            <span>Mon-Fri: 9am-6pm EST</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">FB</a>
+                        <a href="#" class="social-icon">TW</a>
+                        <a href="#" class="social-icon">IN</a>
+                        <a href="#" class="social-icon">LI</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 AMS Solutions. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+
+        // Solution Tabs
+        const solutionTabs = document.querySelectorAll('.solution-tab');
+        const solutionContents = document.querySelectorAll('.solution-content');
+
+        solutionTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                solutionTabs.forEach(t => t.classList.remove('active'));
+                solutionContents.forEach(c => c.classList.remove('active'));
+
+                // Add active class to clicked tab
+                tab.classList.add('active');
+
+                // Show corresponding content
+                const solutionId = tab.getAttribute('data-solution');
+                document.getElementById(solutionId).classList.add('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+
+</html>

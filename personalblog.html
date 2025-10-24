@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Education Blog | Henry's Insights on Family & Technology</title>
+    <style>
+        /* CSS Variables for Color Scheme */
+        :root {
+            --primary-blue: #2563eb;
+            --secondary-red: #dc2626;
+            --black: #000000;
+            --white: #ffffff;
+            --light-gray: #f8fafc;
+            --dark-gray: #334155;
+            --transition: all 0.3s ease;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-blue);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-link.active {
+            color: var(--primary-blue);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%);
+            color: var(--white);
+            padding: 150px 0 100px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        /* Featured Posts */
+        .featured-posts {
+            background-color: var(--light-gray);
+            padding: 80px 0;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .post-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .post-content {
+            padding: 25px;
+        }
+
+        .post-category {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .post-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--black);
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        .post-meta span {
+            margin-right: 15px;
+        }
+
+        .post-excerpt {
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+        }
+
+        /* Blog Content */
+        .blog-content {
+            background-color: var(--white);
+            padding: 80px 0;
+        }
+
+        .blog-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .main-content {
+            background-color: var(--white);
+        }
+
+        .blog-post {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .blog-post:last-child {
+            border-bottom: none;
+        }
+
+        .blog-post-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .blog-post h2 {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .blog-post h2::after {
+            display: none;
+        }
+
+        .blog-post-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+        }
+
+        .blog-post-meta span {
+            margin-right: 20px;
+        }
+
+        .blog-post-content p {
+            margin-bottom: 20px;
+        }
+
+        .read-more {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 30px;
+        }
+
+        .sidebar-widget {
+            margin-bottom: 40px;
+        }
+
+        .sidebar-widget:last-child {
+            margin-bottom: 0;
+        }
+
+        .sidebar-widget h3 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .about-widget {
+            text-align: center;
+        }
+
+        .about-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            object-fit: cover;
+        }
+
+        .categories-list {
+            list-style: none;
+        }
+
+        .categories-list li {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .categories-list li:last-child {
+            border-bottom: none;
+        }
+
+        .categories-list a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .categories-list a:hover {
+            color: var(--primary-blue);
+        }
+
+        .recent-posts-list {
+            list-style: none;
+        }
+
+        .recent-post {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .recent-post:last-child {
+            border-bottom: none;
+        }
+
+        .recent-post-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .recent-post-content h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .recent-post-content a {
+            color: var(--black);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .recent-post-content a:hover {
+            color: var(--primary-blue);
+        }
+
+        .recent-post-date {
+            color: var(--dark-gray);
+            font-size: 0.8rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .newsletter-form input {
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .newsletter h2 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .newsletter h2::after {
+            background-color: var(--white);
+        }
+
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+
+        .newsletter-form-inline {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form-inline input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form-inline button {
+            padding: 12px 25px;
+            background-color: var(--secondary-red);
+            color: var(--white);
+            border: none;
+            border-radius: 0 5px 5px 0;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form-inline button:hover {
+            background-color: #b91c1c;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-links h3,
+        .footer-social h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #334155;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary-blue);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            h2 {
+                font-size: 2.2rem;
+            }
+
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 0;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 20px 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 15px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .bar {
+                display: block;
+                width: 25px;
+                height: 3px;
+                margin: 5px auto;
+                transition: all 0.3s ease-in-out;
+                background-color: var(--black);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form-inline {
+                flex-direction: column;
+            }
+
+            .newsletter-form-inline input {
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+
+            .newsletter-form-inline button {
+                border-radius: 5px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero {
+                padding: 120px 0 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">FamilyEd Blog</a>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="categories.html" class="nav-link">Categories</a></li>
+                    <li class="nav-item"><a href="resources.html" class="nav-link">Resources</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Family Education & Technology Insights</h1>
+            <p>Exploring the intersection of family dynamics, education, and modern technology to strengthen
+                relationships and learning experiences.</p>
+            <a href="#featured" class="btn" style="background-color: var(--white); color: var(--primary-blue);">Explore
+                Articles</a>
+        </div>
+    </section>
+
+    <!-- Featured Posts -->
+    <section class="featured-posts" id="featured">
+        <div class="container">
+            <h2>Featured Articles</h2>
+            <div class="posts-grid">
+                <div class="post-card">
+                    <img src="https://via.placeholder.com/400x200" alt="Digital Parenting" class="post-image">
+                    <div class="post-content">
+                        <span class="post-category">Digital Parenting</span>
+                        <h3>Balancing Screen Time for Healthy Family Dynamics</h3>
+                        <div class="post-meta">
+                            <span>June 15, 2023</span>
+                            <span>8 min read</span>
+                        </div>
+                        <p class="post-excerpt">Practical strategies for managing technology use in families while
+                            maintaining strong connections and communication.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                <div class="post-card">
+                    <img src="https://via.placeholder.com/400x200" alt="Educational Technology" class="post-image">
+                    <div class="post-content">
+                        <span class="post-category">EdTech</span>
+                        <h3>How Technology is Transforming Family Learning</h3>
+                        <div class="post-meta">
+                            <span>May 28, 2023</span>
+                            <span>10 min read</span>
+                        </div>
+                        <p class="post-excerpt">Exploring innovative tools and platforms that are revolutionizing how
+                            families learn and grow together.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                <div class="post-card">
+                    <img src="https://via.placeholder.com/400x200" alt="Communication" class="post-image">
+                    <div class="post-content">
+                        <span class="post-category">Communication</span>
+                        <h3>Building Strong Family Connections in a Digital World</h3>
+                        <div class="post-meta">
+                            <span>April 12, 2023</span>
+                            <span>6 min read</span>
+                        </div>
+                        <p class="post-excerpt">Effective communication strategies that help families stay connected
+                            despite busy schedules and digital distractions.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <section class="blog-content">
+        <div class="container">
+            <div class="blog-container">
+                <div class="main-content">
+                    <div class="blog-post">
+                        <img src="https://via.placeholder.com/800x400" alt="Family Learning" class="blog-post-image">
+                        <h2>Creating a Family Learning Environment at Home</h2>
+                        <div class="blog-post-meta">
+                            <span>March 22, 2023</span>
+                            <span>12 min read</span>
+                            <span>Family Education</span>
+                        </div>
+                        <div class="blog-post-content">
+                            <p>In today's fast-paced world, creating a nurturing learning environment at home has never
+                                been more important. With the right approach, your home can become a hub of curiosity,
+                                exploration, and growth for every family member.</p>
+                            <p>From designing dedicated learning spaces to incorporating educational technology, this
+                                article explores practical ways to transform your home into an environment that supports
+                                continuous learning and development.</p>
+                            <a href="#" class="read-more">Continue Reading →</a>
+                        </div>
+                    </div>
+                    <div class="blog-post">
+                        <img src="https://via.placeholder.com/800x400" alt="Tech Balance" class="blog-post-image">
+                        <h2>The Art of Digital Detox: Reconnecting as a Family</h2>
+                        <div class="blog-post-meta">
+                            <span>February 18, 2023</span>
+                            <span>9 min read</span>
+                            <span>Digital Wellness</span>
+                        </div>
+                        <div class="blog-post-content">
+                            <p>In an increasingly connected world, finding balance between digital engagement and
+                                real-world connection is essential for family wellbeing. This article provides a
+                                comprehensive guide to implementing effective digital detox strategies.</p>
+                            <p>Learn how to create tech-free zones, establish healthy boundaries, and rediscover the joy
+                                of unplugged family activities that strengthen bonds and create lasting memories.</p>
+                            <a href="#" class="read-more">Continue Reading →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar">
+                    <div class="sidebar-widget about-widget">
+                        <img src="https://via.placeholder.com/150" alt="Henry" class="about-image">
+                        <h3>About Henry</h3>
+                        <p>I'm a web developer with a background in Marriage and Family Studies. I explore how
+                            technology and family dynamics intersect to create meaningful connections and learning
+                            experiences.</p>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h3>Categories</h3>
+                        <ul class="categories-list">
+                            <li><a href="#">Digital Parenting</a></li>
+                            <li><a href="#">Educational Technology</a></li>
+                            <li><a href="#">Family Communication</a></li>
+                            <li><a href="#">Learning Strategies</a></li>
+                            <li><a href="#">Tech Balance</a></li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h3>Recent Posts</h3>
+                        <ul class="recent-posts-list">
+                            <li class="recent-post">
+                                <img src="https://via.placeholder.com/80" alt="Recent Post" class="recent-post-image">
+                                <div class="recent-post-content">
+                                    <h4><a href="#">The Future of Family Education</a></h4>
+                                    <div class="recent-post-date">June 5, 2023</div>
+                                </div>
+                            </li>
+                            <li class="recent-post">
+                                <img src="https://via.placeholder.com/80" alt="Recent Post" class="recent-post-image">
+                                <div class="recent-post-content">
+                                    <h4><a href="#">Building Resilience in Children</a></h4>
+                                    <div class="recent-post-date">May 20, 2023</div>
+                                </div>
+                            </li>
+                            <li class="recent-post">
+                                <img src="https://via.placeholder.com/80" alt="Recent Post" class="recent-post-image">
+                                <div class="recent-post-content">
+                                    <h4><a href="#">Mindful Technology Use</a></h4>
+                                    <div class="recent-post-date">April 30, 2023</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h3>Newsletter</h3>
+                        <p>Subscribe to get the latest articles on family education and technology.</p>
+                        <form class="newsletter-form">
+                            <input type="text" placeholder="Your Name">
+                            <input type="email" placeholder="Your Email">
+                            <button type="submit" class="btn">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Join Our Community</h2>
+            <p>Subscribe to our newsletter for weekly insights on family education, technology trends, and practical
+                tips for strengthening family connections.</p>
+            <form class="newsletter-form-inline">
+                <input type="email" placeholder="Enter your email address">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">FamilyEd Blog</div>
+                    <p>Exploring the intersection of family dynamics, education, and modern technology.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">FB</a>
+                        <a href="#" class="social-icon">TW</a>
+                        <a href="#" class="social-icon">IG</a>
+                        <a href="#" class="social-icon">YT</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Family Education Blog. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+
+        // Newsletter Form Submission
+        const newsletterForms = document.querySelectorAll('.newsletter-form, .newsletter-form-inline');
+
+        newsletterForms.forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for subscribing to our newsletter!');
+                form.reset();
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+
+</html>

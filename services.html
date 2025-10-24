@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | AMS Solutions</title>
+    <style>
+        /* CSS Variables for Color Scheme */
+        :root {
+            --primary-blue: #2563eb;
+            --secondary-red: #dc2626;
+            --black: #000000;
+            --white: #ffffff;
+            --light-gray: #f8fafc;
+            --dark-gray: #334155;
+            --transition: all 0.3s ease;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-blue);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-link.active {
+            color: var(--primary-blue);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%);
+            color: var(--white);
+            padding: 150px 0 80px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Services Overview */
+        .services-overview {
+            background-color: var(--light-gray);
+            padding: 80px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--black);
+        }
+
+        .service-card p {
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+        }
+
+        /* Service Details */
+        .service-details {
+            background-color: var(--white);
+            padding: 80px 0;
+        }
+
+        .service-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .service-tab {
+            padding: 12px 25px;
+            background-color: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .service-tab.active,
+        .service-tab:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .service-content {
+            display: none;
+        }
+
+        .service-content.active {
+            display: block;
+        }
+
+        .service-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .service-features {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .service-features li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        /* Process Section */
+        .process {
+            background-color: var(--light-gray);
+            padding: 80px 0;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            counter-reset: step;
+        }
+
+        .process-step {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .process-step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .process-step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--black);
+        }
+
+        .process-step p {
+            color: var(--dark-gray);
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .cta h2 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .cta h2::after {
+            background-color: var(--white);
+        }
+
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-links h3,
+        .footer-contact h3,
+        .footer-social h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            margin-right: 10px;
+            color: var(--primary-blue);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #334155;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary-blue);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            h2 {
+                font-size: 2.2rem;
+            }
+
+            .service-detail {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 0;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 20px 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 15px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .bar {
+                display: block;
+                width: 25px;
+                height: 3px;
+                margin: 5px auto;
+                transition: all 0.3s ease-in-out;
+                background-color: var(--black);
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .page-header {
+                padding: 120px 0 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">AMS Solutions</a>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link active">Services</a></li>
+                    <li class="nav-item"><a href="industries.html" class="nav-link">Industries</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Services</h1>
+            <p>Comprehensive Business Process Outsourcing solutions tailored to optimize your operations and drive
+                growth.</p>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="services-overview">
+        <div class="container">
+            <h2>Comprehensive BPO Solutions</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📞</div>
+                    <h3>Customer Support</h3>
+                    <p>24/7 multilingual customer service solutions to enhance customer satisfaction and retention.</p>
+                    <a href="#customer-support" class="btn btn-outline">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💼</div>
+                    <h3>Back Office Operations</h3>
+                    <p>Comprehensive administrative support including data entry, document processing, and record
+                        management.</p>
+                    <a href="#back-office" class="btn btn-outline">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Data Analytics</h3>
+                    <p>Transform raw data into actionable insights to drive informed business decisions and strategies.
+                    </p>
+                    <a href="#data-analytics" class="btn btn-outline">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3>IT Services</h3>
+                    <p>End-to-end IT solutions including software development, infrastructure management, and
+                        cybersecurity.</p>
+                    <a href="#it-services" class="btn btn-outline">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📈</div>
+                    <h3>Digital Marketing</h3>
+                    <p>Comprehensive digital marketing strategies to increase brand visibility and drive customer
+                        acquisition.</p>
+                    <a href="#digital-marketing" class="btn btn-outline">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔒</div>
+                    <h3>Compliance & Risk Management</h3>
+                    <p>Ensure regulatory compliance and mitigate business risks with our expert consulting services.</p>
+                    <a href="#compliance" class="btn btn-outline">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Details -->
+    <section class="service-details">
+        <div class="container">
+            <h2>Service Details</h2>
+            <div class="service-tabs">
+                <button class="service-tab active" data-service="customer-support">Customer Support</button>
+                <button class="service-tab" data-service="back-office">Back Office Operations</button>
+                <button class="service-tab" data-service="data-analytics">Data Analytics</button>
+                <button class="service-tab" data-service="it-services">IT Services</button>
+                <button class="service-tab" data-service="digital-marketing">Digital Marketing</button>
+                <button class="service-tab" data-service="compliance">Compliance & Risk</button>
+            </div>
+
+            <!-- Customer Support -->
+            <div class="service-content active" id="customer-support">
+                <div class="service-detail">
+                    <div class="service-text">
+                        <h3>Customer Support Solutions</h3>
+                        <p>Our comprehensive customer support services are designed to enhance customer satisfaction
+                            while reducing your operational costs. We provide 24/7 multilingual support across various
+                            channels.</p>
+                        <ul class="service-features">
+                            <li>24/7 multilingual customer service</li>
+                            <li>Omnichannel support (phone, email, chat, social media)</li>
+                            <li>Customer satisfaction monitoring and reporting</li>
+                            <li>Technical support and troubleshooting</li>
+                            <li>Customer feedback collection and analysis</li>
+                            <li>CRM integration and management</li>
+                        </ul>
+                        <a href="contact.html" class="btn">Get Started</a>
+                    </div>
+                    <div class="service-image">
+                        <img src="https://via.placeholder.com/500" alt="Customer Support"
+                            style="width: 100%; border-radius: 10px;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back Office Operations -->
+            <div class="service-content" id="back-office">
+                <div class="service-detail">
+                    <div class="service-text">
+                        <h3>Back Office Operations</h3>
+                        <p>Streamline your administrative processes with our comprehensive back-office solutions. We
+                            handle repetitive tasks so you can focus on core business activities.</p>
+                        <ul class="service-features">
+                            <li>Data entry and processing</li>
+                            <li>Document management and digitization</li>
+                            <li>Record keeping and archiving</li>
+                            <li>Invoice processing and accounts payable</li>
+                            <li>HR administration support</li>
+                            <li>Quality assurance and accuracy checks</li>
+                        </ul>
+                        <a href="contact.html" class="btn">Get Started</a>
+                    </div>
+                    <div class="service-image">
+                        <img src="https://via.placeholder.com/500" alt="Back Office Operations"
+                            style="width: 100%; border-radius: 10px;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Analytics -->
+            <div class="service-content" id="data-analytics">
+                <div class="service-detail">
+                    <div class="service-text">
+                        <h3>Data Analytics & Insights</h3>
+                        <p>Transform your raw data into actionable business intelligence. Our analytics experts help you
+                            make data-driven decisions that drive growth and efficiency.</p>
+                        <ul class="service-features">
+                            <li>Data collection and processing</li>
+                            <li>Business intelligence reporting</li>
+                            <li>Predictive analytics and modeling</li>
+                            <li>Performance dashboards and KPI tracking</li>
+                            <li>Market research and competitive analysis</li>
+                            <li>Custom analytics solutions</li>
+                        </ul>
+                        <a href="contact.html" class="btn">Get Started</a>
+                    </div>
+                    <div class="service-image">
+                        <img src="https://via.placeholder.com/500" alt="Data Analytics"
+                            style="width: 100%; border-radius: 10px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="container">
+            <h2>Our Service Delivery Process</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <h3>Consultation & Analysis</h3>
+                    <p>We begin with a comprehensive analysis of your business needs and challenges to understand your
+                        requirements.</p>
+                </div>
+                <div class="process-step">
+                    <h3>Solution Design</h3>
+                    <p>Our experts design customized solutions tailored to your specific business objectives and
+                        operational needs.</p>
+                </div>
+                <div class="process-step">
+                    <h3>Implementation</h3>
+                    <p>We seamlessly implement the designed solutions with minimal disruption to your existing
+                        operations.</p>
+                </div>
+                <div class="process-step">
+                    <h3>Ongoing Support</h3>
+                    <p>Continuous monitoring, optimization, and support to ensure your operations run smoothly and
+                        efficiently.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Optimize Your Operations?</h2>
+            <p>Contact us today for a free consultation and discover how our services can transform your business
+                processes.</p>
+            <a href="contact.html" class="btn" style="background-color: var(--white); color: var(--primary-blue);">Get
+                Started</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">AMS Solutions</div>
+                    <p>Providing comprehensive Business Process Outsourcing services to help companies optimize
+                        efficiency, reduce costs, and drive growth.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="industries.html">Industries</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <span class="contact-icon">📍</span>
+                            <span>123 Business Avenue, Suite 500<br>New York, NY 10001</span>
+                        </li>
+                        <li>
+                            <span class="contact-icon">📞</span>
+                            <span>+1 (555) 123-4567</span>
+                        </li>
+                        <li>
+                            <span class="contact-icon">📧</span>
+                            <span>info@amssolutions.com</span>
+                        </li>
+                        <li>
+                            <span class="contact-icon">🕒</span>
+                            <span>Mon-Fri: 9am-6pm EST</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">FB</a>
+                        <a href="#" class="social-icon">TW</a>
+                        <a href="#" class="social-icon">IN</a>
+                        <a href="#" class="social-icon">LI</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 AMS Solutions. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+
+        // Service Tabs
+        const serviceTabs = document.querySelectorAll('.service-tab');
+        const serviceContents = document.querySelectorAll('.service-content');
+
+        serviceTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                serviceTabs.forEach(t => t.classList.remove('active'));
+                serviceContents.forEach(c => c.classList.remove('active'));
+
+                // Add active class to clicked tab
+                tab.classList.add('active');
+
+                // Show corresponding content
+                const serviceId = tab.getAttribute('data-service');
+                document.getElementById(serviceId).classList.add('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+
+</html>

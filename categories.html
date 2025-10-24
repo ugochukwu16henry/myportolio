@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Categories | Family Games Store</title>
+    <style>
+        /* CSS Variables for Color Scheme */
+        :root {
+            --primary-blue: #2563eb;
+            --secondary-red: #dc2626;
+            --black: #000000;
+            --white: #ffffff;
+            --light-gray: #f8fafc;
+            --dark-gray: #334155;
+            --transition: all 0.3s ease;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-blue);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-link.active {
+            color: var(--primary-blue);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Shopping Cart */
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--secondary-red);
+            color: var(--white);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%);
+            color: var(--white);
+            padding: 150px 0 80px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Categories Grid */
+        .categories-grid {
+            background-color: var(--light-gray);
+            padding: 80px 0;
+        }
+
+        .categories-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .category-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .category-content {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        .category-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--black);
+        }
+
+        .category-stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--dark-gray);
+        }
+
+        /* Age Groups */
+        .age-groups {
+            background-color: var(--white);
+            padding: 80px 0;
+        }
+
+        .age-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .age-card {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .age-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .age-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        .age-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--black);
+        }
+
+        .age-card p {
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+        }
+
+        /* Shopping Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 100%;
+            background-color: var(--white);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .cart-modal.active {
+            display: block;
+        }
+
+        .cart-header {
+            padding: 20px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-details h4 {
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .cart-item-price {
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            background-color: var(--light-gray);
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--secondary-red);
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        .cart-total {
+            padding: 20px;
+            background-color: var(--light-gray);
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--secondary-red);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 15px;
+        }
+
+        .checkout-btn:hover {
+            background-color: #b91c1c;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-links h3,
+        .footer-contact h3,
+        .footer-social h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            margin-right: 10px;
+            color: var(--primary-blue);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #334155;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary-blue);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            h2 {
+                font-size: 2.2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cart-modal {
+                width: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 0;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 20px 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 15px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .bar {
+                display: block;
+                width: 25px;
+                height: 3px;
+                margin: 5px auto;
+                transition: all 0.3s ease-in-out;
+                background-color: var(--black);
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .categories-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+
+            .cart-modal {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .page-header {
+                padding: 120px 0 60px;
+            }
+
+            .category-stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Family Games Store</a>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+                    <li class="nav-item"><a href="categories.html" class="nav-link active">Categories</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li class="nav-item">
+                        <div class="cart-icon" id="cartIcon">
+                            🛒
+                            <span class="cart-count" id="cartCount">0</span>
+                        </div>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Shopping Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h3>Your Shopping Cart</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-total">
+            <div class="total-row">
+                <span>Subtotal:</span>
+                <span id="cartSubtotal">$0.00</span>
+            </div>
+            <div class="total-row">
+                <span>Shipping:</span>
+                <span id="cartShipping">$5.99</span>
+            </div>
+            <div class="total-row">
+                <span>Total:</span>
+                <span id="cartTotal">$5.99</span>
+            </div>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Product Categories</h1>
+            <p>Explore our carefully curated categories to find the perfect games and activities for your family.</p>
+        </div>
+    </section>
+
+    <!-- Categories Grid -->
+    <section class="categories-grid">
+        <div class="container">
+            <h2>Shop by Category</h2>
+            <div class="categories-container">
+                <!-- Educational Games -->
+                <div class="category-card">
+                    <img src="https://via.placeholder.com/400x200" alt="Educational Games" class="category-image">
+                    <div class="category-content">
+                        <div class="category-icon">🧩</div>
+                        <h3>Educational Games</h3>
+                        <p>Learning through play with STEM, language, math, and science games that make education fun
+                            and engaging.</p>
+                        <div class="category-stats">
+                            <div class="stat">
+                                <div class="stat-number">42</div>
+                                <div class="stat-label">Products</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">4.8</div>
+                                <div class="stat-label">Avg Rating</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">3+</div>
+                                <div class="stat-label">Age</div>
+                            </div>
+                        </div>
+                        <a href="shop.html?category=educational" class="btn">Browse Educational Games</a>
+                    </div>
+                </div>
+
+                <!-- Puzzles & Brain Teasers -->
+                <div class="category-card">
+                    <img src="https://via.placeholder.com/400x200" alt="Puzzles" class="category-image">
+                    <div class="category-content">
+                        <div class="category-icon">🧩</div>
+                        <h3>Puzzles & Brain Teasers</h3>
+                        <p>Challenge cognitive skills with jigsaw puzzles, logic games, and brain teasers for all
+                            difficulty levels.</p>
+                        <div class="category-stats">
+                            <div class="stat">
+                                <div class="stat-number">28</div>
+                                <div class="stat-label">Products</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">4.7</div>
+                                <div class="stat-label">Avg Rating</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">4+</div>
+                                <div class="stat-label">Age</div>
+                            </div>
+                        </div>
+                        <a href="shop.html?category=puzzles" class="btn">Browse Puzzles</a>
+                    </div>
+                </div>
+
+                <!-- Board Games -->
+                <div class="category-card">
+                    <img src="https://via.placeholder.com/400x200" alt="Board Games" class="category-image">
+                    <div class="category-content">
+                        <div class="category-icon">🎲</div>
+                        <h3>Board Games</h3>
+                        <p>Classic and modern board games perfect for family game nights, parties, and educational
+                            entertainment.</p>
+                        <div class="category-stats">
+                            <div class="stat">
+                                <div class="stat-number">35</div>
+                                <div class="stat-label">Products</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">4.9</div>
+                                <div class="stat-label">Avg Rating</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">6+</div>
+                                <div class="stat-label">Age</div>
+                            </div>
+                        </div>
+                        <a href="shop.html?category=board-games" class="btn">Browse Board Games</a>
+                    </div>
+                </div>
+
+                <!-- Creative Kits -->
+                <div class="category-card">
+                    <img src="https://via.placeholder.com/400x200" alt="Creative Kits" class="category-image">
+                    <div class="category-content">
+                        <div class="category-icon">🎨</div>
+                        <h3>Creative Kits</h3>
+                        <p>Arts, crafts, DIY projects, and building kits that inspire creativity and hands-on learning
+                            experiences.</p>
+                        <div class="category-stats">
+                            <div class="stat">
+                                <div class="stat-number">31</div>
+                                <div class="stat-label">Products</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">4.6</div>
+                                <div class="stat-label">Avg Rating</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">5+</div>
+                                <div class="stat-label">Age</div>
+                            </div>
+                        </div>
+                        <a href="shop.html?category=creative" class="btn">Browse Creative Kits</a>
+                    </div>
+                </div>
+
+                <!-- Outdoor Games -->
+                <div class="category-card">
+                    <img src="https://via.placeholder.com/400x200" alt="Outdoor Games" class="category-image">
+                    <div class="category-content">
+                        <div class="category-icon">🌳</div>
+                        <h3>Outdoor Games</h3>
+                        <p>Active play, sports equipment, and adventure games designed for backyard fun and outdoor
+                            exploration.</p>
+                        <div class="category-stats">
+                            <div class="stat">
+                                <div class="stat-number">19</div>
+                                <div class="stat-label">Products</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">4.8</div>
+                                <div class="stat-label">Avg Rating</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">3+</div>
+                                <div class="stat-label">Age</div>
+                            </div>
+                        </div>
+                        <a href="shop.html?category=outdoor" class="btn">Browse Outdoor Games</a>
+                    </div>
+                </div>
+
+                <!-- Digital Learning -->
+                <div class="category-card">
+                    <img src="https://via.placeholder.com/400x200" alt="Digital Learning" class="category-image">
+                    <div class="category-content">
+                        <div class="category-icon">💻</div>
+                        <h3>Digital Learning</h3>
+                        <p>Educational apps, coding games, and digital tools that combine technology with learning in
+                            engaging ways.</p>
+                        <div class="category-stats">
+                            <div class="stat">
+                                <div class="stat-number">24</div>
+                                <div class="stat-label">Products</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">4.5</div>
+                                <div class="stat-label">Avg Rating</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">7+</div>
+                                <div class="stat-label">Age</div>
+                            </div>
+                        </div>
+                        <a href="shop.html?category=digital" class="btn">Browse Digital Learning</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Age Groups -->
+    <section class="age-groups">
+        <div class="container">
+            <h2>Shop by Age Group</h2>
+            <div class="age-grid">
+                <div class="age-card">
+                    <div class="age-icon">👶</div>
+                    <h3>Toddlers (3-5 Years)</h3>
+                    <p>Simple puzzles, basic matching games, and sensory toys that develop fine motor skills and early
+                        learning concepts.</p>
+                    <a href="shop.html?age=3-5" class="btn btn-outline">Shop for Toddlers</a>
+                </div>
+                <div class="age-card">
+                    <div class="age-icon">👧</div>
+                    <h3>Young Children (6-8 Years)</h3>
+                    <p>Educational games, beginner puzzles, and creative activities that build foundational skills and
+                        knowledge.</p>
+                    <a href="shop.html?age=6-8" class="btn btn-outline">Shop for Young Children</a>
+                </div>
+                <div class="age-card">
+                    <div class="age-icon">👦</div>
+                    <h3>Older Children (9-12 Years)</h3>
+                    <p>Strategy games, complex puzzles, and STEM activities that challenge critical thinking and
+                        problem-solving.</p>
+                    <a href="shop.html?age=9-12" class="btn btn-outline">Shop for Older Children</a>
+                </div>
+                <div class="age-card">
+                    <div class="age-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Family (All Ages)</h3>
+                    <p>Games and activities designed for the whole family to enjoy together, creating lasting memories
+                        and bonding experiences.</p>
+                    <a href="shop.html?age=family" class="btn btn-outline">Shop Family Games</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">Family Games Store</div>
+                    <p>Bringing families together through fun and educational games, puzzles, and activities.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <span class="contact-icon">📍</span>
+                            <span>123 Play Street<br>Fun City, FC 12345</span>
+                        </li>
+                        <li>
+                            <span class="contact-icon">📞</span>
+                            <span>+1 (555) 123-4567</span>
+                        </li>
+                        <li>
+                            <span class="contact-icon">📧</span>
+                            <span>hello@familygamesstore.com</span>
+                        </li>
+                        <li>
+                            <span class="contact-icon">🕒</span>
+                            <span>Mon-Sat: 9am-8pm EST</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">FB</a>
+                        <a href="#" class="social-icon">IG</a>
+                        <a href="#" class="social-icon">PT</a>
+                        <a href="#" class="social-icon">YT</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Family Games Store. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+
+        // Shopping Cart Functionality
+        const cartIcon = document.getElementById('cartIcon');
+        const cartModal = document.getElementById('cartModal');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartCount = document.getElementById('cartCount');
+        const cartSubtotal = document.getElementById('cartSubtotal');
+        const cartTotal = document.getElementById('cartTotal');
+
+        let cart = [];
+
+        // Toggle cart modal
+        cartIcon.addEventListener('click', () => {
+            cartModal.classList.toggle('active');
+        });
+
+        closeCart.addEventListener('click', () => {
+            cartModal.classList.remove('active');
+        });
+
+        function updateCart() {
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+
+            // Update cart items
+            cartItems.innerHTML = '';
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <h4>${item.name}</h4>
+                        <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn minus" data-id="${item.id}">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn plus" data-id="${item.id}">+</button>
+                        </div>
+                    </div>
+                    <button class="remove-item" data-id="${item.id}">×</button>
+                `;
+                cartItems.appendChild(cartItem);
+            });
+
+            // Update totals
+            const shipping = 5.99;
+            const total = subtotal + shipping;
+
+            cartSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+            cartTotal.textContent = `$${total.toFixed(2)}`;
+
+            // Add event listeners to quantity buttons
+            document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = e.target.getAttribute('data-id');
+                    updateQuantity(id, -1);
+                });
+            });
+
+            document.querySelectorAll('.quantity-btn.plus').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = e.target.getAttribute('data-id');
+                    updateQuantity(id, 1);
+                });
+            });
+
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.remove-item').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = e.target.getAttribute('data-id');
+                    removeFromCart(id);
+                });
+            });
+        }
+
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCart();
+                }
+            }
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+        }
+
+        // Initialize with empty cart
+        updateCart();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+
+</html>
