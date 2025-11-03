@@ -59,9 +59,17 @@ contactForm.addEventListener("submit", function (e) {
   btn.textContent = "Sending...";
   btn.disabled = true;
 
+  // Get form values
+  const templateParams = {
+    from_name: document.getElementById("name").value,
+    reply_to: document.getElementById("email").value,
+    subject: document.getElementById("subject").value,
+    message: document.getElementById("message").value,
+  };
+
   // Send email using EmailJS
   emailjs
-    .sendForm("service_2zmu15w", "template_jc64gil", this)
+    .send("service_2zmu15w", "template_jc64gil", templateParams)
     .then(function () {
       alert("Message sent successfully! I'll get back to you soon.");
       contactForm.reset();
