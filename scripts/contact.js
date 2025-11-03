@@ -45,13 +45,10 @@ faqQuestions.forEach((question) => {
   });
 });
 
-// Contact Form Submission with EmailJS
-// Initialize EmailJS
-emailjs.init("qB08cvhuuvad041bzY");
-
+// Contact Form Submission with Formspree
 const contactForm = document.getElementById("contactForm");
 
-contactForm.addEventListener("submit", function (e) {
+contactForm.addEventListener("submit", async function (e) {
   e.preventDefault();
 
   const btn = this.querySelector(".btn");
@@ -59,29 +56,32 @@ contactForm.addEventListener("submit", function (e) {
   btn.textContent = "Sending...";
   btn.disabled = true;
 
-  // Get form values
-  const templateParams = {
-    from_name: document.getElementById("name").value,
-    reply_to: document.getElementById("email").value,
-    subject: document.getElementById("subject").value,
-    message: document.getElementById("message").value,
-  };
+  // Get form data
+  const formData = new FormData(this);
 
-  // Send email using EmailJS
-  emailjs
-    .send("service_2zmu15w", "template_jc64gil", templateParams)
-    .then(function () {
+  try {
+    // Send to Formspree - Replace YOUR_FORM_ID with your actual Formspree form ID
+    const response = await fetch(this.action, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json",
+      },
+    });
+
+    if (response.ok) {
       alert("Message sent successfully! I'll get back to you soon.");
       contactForm.reset();
-      btn.textContent = originalText;
-      btn.disabled = false;
-    })
-    .catch(function (error) {
-      alert("Failed to send message. Please try again.");
-      console.error("EmailJS Error:", error);
-      btn.textContent = originalText;
-      btn.disabled = false;
-    });
+    } else {
+      throw new Error("Form submission failed");
+    }
+  } catch (error) {
+    alert("Failed to send message. Please try again.");
+    console.error("Formspree Error:", error);
+  } finally {
+    btn.textContent = originalText;
+    btn.disabled = false;
+  }
 });
 
 // Smooth scrolling for anchor links
