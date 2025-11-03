@@ -701,3 +701,20 @@ footer {
     }
 }
 
+
+.logo1 {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.logo-img {
+    height: 40px;
+    /* adjust as needed */
+    width: auto;
+    margin-right: 8px;
+    /* space between logo and text */
+}

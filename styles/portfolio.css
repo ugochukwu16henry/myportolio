@@ -739,3 +739,10 @@ footer {
     }
 }
 
+.logo-img {
+    height: 40px;
+    /* adjust as needed */
+    width: auto;
+    margin-right: 8px;
+    /* space between logo and text */
+}
