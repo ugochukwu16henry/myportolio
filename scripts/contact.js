@@ -91,4 +91,34 @@
                 header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
             }
         });
+
+        // Add EmailJS SDK to your HTML head
+// <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+// Initialize EmailJS (add your public key)
+emailjs.init("qB08cvhuuvad041bzY");
+
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const btn = this.querySelector('.btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    
+    // Send email
+    emailjs.sendForm("service_2zmu15w", "template_jc64gil", this).then(
+      function () {
+        alert("Message sent successfully!");
+        document.getElementById("contactForm").reset();
+        btn.textContent = "Send Message";
+        btn.disabled = false;
+      },
+      function (error) {
+        alert("Failed to send message. Please try again.");
+        console.error("Error:", error);
+        btn.textContent = "Send Message";
+        btn.disabled = false;
+      }
+    );
+});
     
